@@ -32,9 +32,9 @@ public:
 		src2 = start;
 		src3 = start;
 		len = strlen(name);
-		srce = end;//end ÁöÁ¡ ¿øº»
-		srce2 = end; //°Çµå¸®¸é ¾ÈµÊ
-		srce3 = end;//°Çµå·ÁµµµÊ
+		srce = end;//end ì§€ì  ì›ë³¸
+		srce2 = end; //ê±´ë“œë¦¬ë©´ ì•ˆë¨
+		srce3 = end;//ê±´ë“œë ¤ë„ë¨
 		len2 = 0;
 		count2 = x1 - x - strlen(name);
 		count = 0;
@@ -78,22 +78,22 @@ public:
 		else if (tf==false) {
 
 			if (srce <= x) {
-				srce = srce2; //Ã¹ ÁöÁ¡À¸·Î µ¹¾Æ¿ÔÀ»¶§ ÃÊ±âÈ­
+				srce = srce2; //ì²« ì§€ì ìœ¼ë¡œ ëŒì•„ì™”ì„ë•Œ ì´ˆê¸°í™”
 				srce3 = srce2;
 
 			}
 
 			gotoxy(x1, h);
-			cout << ' ' << endl; // µÚ¿¡ Âî²¨±â Áö¿ì´Â ÁÙ
+			cout << ' ' << endl; // ë’¤ì— ì°Œêº¼ê¸° ì§€ìš°ëŠ” ì¤„
 
 			for (int i = 0; i < name2[i]; i++) {
 
 				gotoxy(x1, h);
-				 //ÀüÃ¼ÀûÀÎ ¸ğÇü 
+				 //ì „ì²´ì ì¸ ëª¨í˜• 
 
 				if (name2[i] == NULL) {
 					break;
-				} //³Î°ª Â÷´Ü
+				} //ë„ê°’ ì°¨ë‹¨
 
 				if (x1 <= x) {
 					gotoxy(srce3, h);
@@ -103,10 +103,10 @@ public:
 					srce3 = srce2;
 				}
 
-				cout << name2[i] << endl; //Ãâ·Â
+				cout << name2[i] << endl; //ì¶œë ¥
 
 				gotoxy(x1 + strlen(name), h);
-				cout << ' ' << endl; // µÚ¿¡ Âî²¨±â Áö¿ì´Â ÁÙ
+				cout << ' ' << endl; // ë’¤ì— ì°Œêº¼ê¸° ì§€ìš°ëŠ” ì¤„
 
 				x1--;
 			}
@@ -117,7 +117,9 @@ public:
 	}
 	~RotateScroll() {
 		delete[] name2;
-		delete[] name;
+		for(int i=0;i<name[i];i++){
+			delete[i] name;
+		}
 	}
 
 };
