@@ -13,7 +13,7 @@ private:
 	string AllName;
 	string NameLast;
 	int Len;
-	//±ÍÂú¾Æ¼­ ÀÛ¼ºÇß´Ù ¾ÈÇØ¼­ Á¦°Å ¾ÈÇÑ º¯¼ö ¿©·µ
+	//ê·€ì°®ì•„ì„œ ì‘ì„±í–ˆë‹¤ ì•ˆí•´ì„œ ì œê±° ì•ˆí•œ ë³€ìˆ˜ ì—¬ëŸ¿
 public:
 
 	File(string aFileName) {
@@ -22,14 +22,14 @@ public:
 	}
 
 	void FileBunryu() {
-		Number = AllName.substr(0, 8); // ¾Õ¿¡ ¹øÈ£¸¸ µû·Î ÀúÀå 
-		Name = AllName.erase(0, 8); //µÚ¿¡ ÇÑÀÚ ¸ğÀ¸´Â°Å 
-		NameLast = regex_replace(Name, regex("webp"), ""); //µÚ¿¡ ÇÑÀÚ ¸ğÀº°Å¿¡ webp ¹®Àå Á¦°Å 
+		Number = AllName.substr(0, 8); // ì•ì— ë²ˆí˜¸ë§Œ ë”°ë¡œ ì €ì¥ 
+		Name = AllName.erase(0, 8); //ë’¤ì— í•œì ëª¨ìœ¼ëŠ”ê±° 
+		NameLast = regex_replace(Name, regex("webp"), ""); //ë’¤ì— í•œì ëª¨ì€ê±°ì— webp ë¬¸ì¥ ì œê±° 
 
 		/*cout << '"' << Number << '"' << ':' << '"' << NameLast << '"' << endl;*/
 	}
 	string ReturnName() {
-		return NameLast; // Å¬·¡½º ¼±¾ğÀ» À§ÇØ µû·Î ¸®ÅÏ
+		return NameLast; // í´ë˜ìŠ¤ ì„ ì–¸ì„ ìœ„í•´ ë”°ë¡œ ë¦¬í„´
 	}
 	string ReturnNumber() {
 		return Number; //2
@@ -38,7 +38,7 @@ public:
 		Name.clear();
 		Number.clear();
 		AllName.clear();
-		//È¤½Ã ¸ô¶ó ÆÄ±«ÀÚ 
+		//í˜¹ì‹œ ëª°ë¼ íŒŒê´´ì 
 	}
 };
 
@@ -46,7 +46,7 @@ class TextWrite {
 private:
 	string Name;
 	string Number;
-	ofstream Sibal;
+	ofstream arre;
 public:
 
 	TextWrite(string aNumber, string aName) {
@@ -54,35 +54,35 @@ public:
 		Number = aNumber;
 	}
 	void Write() {
-		Sibal.open("C:\\Users\\kim\\Desktop\\111.txt", ios::ate | ios::app); //  SibalÀÌ Å¬·¡½º ¼±¾ğ º¯¼öÀÓ ¿å¾Æ´Ô Àı´ë·Î ate´Â ¾²±â À§ÇØ ¿©´Â°Å app´Â ¿¬¼ÓÇØ¼­ ¾²´Â°Å
-		Sibal << '"' << Number << '"' << ':' << '"' << Name << '"' << endl; // ½ÇÁ÷ÀûÀÎ ¾²´Â°Å ±Ùµ¥ ´õ·¯¿öº¸ÀÓ 
-		Sibal.close(); // ´İ±â
+		arre.open("C:\\Users\\kim\\Desktop\\111.txt", ios::ate | ios::app); //ê±°
+		arre << '"' << Number << '"' << ':' << '"' << Name << '"' << endl; // ì‹¤ì§ì ì¸ ì“°ëŠ”ê±° ê·¼ë° ë”ëŸ¬ì›Œë³´ì„ 
+		arre.close(); // ë‹«ê¸°
 	}
 	~TextWrite() {
 		Name.clear();
-		Number.clear();//ÆÄ±«ÀÚ È¤½Ã ¸ô¶ó¼­ 
+		Number.clear();//íŒŒê´´ì í˜¹ì‹œ ëª°ë¼ì„œ 
 	}
 };
 
 void main() {
 
-	string path = "C:\\Users\\kim\\Desktop\\kai re sei\\*.*"; // °æ·Î
+	string path = "C:\\Users\\kim\\Desktop\\kai re sei\\*.*"; // ê²½ë¡œ
 	struct _finddata_t fd;
 	intptr_t handle;
 	string Name;
 
 	if ((handle = _findfirst(path.c_str(), &fd)) == -1L)
-		cout << "No file in directory!" << endl; //¾øÀ»¶§ Ç¥½Ã
+		cout << "No file in directory!" << endl; //ì—†ì„ë•Œ í‘œì‹œ
 	do {
 		if (fd.name != NULL) {
-			Name = fd.name; // º¯¼ö¿¡ ÀúÀå
+			Name = fd.name; // ë³€ìˆ˜ì— ì €ì¥
 
-			File n(Name); //Å¬·¡½º ÆÄÀÏ ¼±¾ğ
+			File n(Name); //í´ë˜ìŠ¤ íŒŒì¼ ì„ ì–¸
 
 			n.FileBunryu();
 
-			TextWrite wr(n.ReturnNumber(), n.ReturnName()); //ÅØ½ºÆ® ÆÄÀÏ Å¬·¡½º »ı¼º¹®
-			wr.Write();// ½ÇÁúÀûÀÎ ÅØ½ºÆ® ÆÄÀÏ ÀĞ±â
+			TextWrite wr(n.ReturnNumber(), n.ReturnName()); //í…ìŠ¤íŠ¸ íŒŒì¼ í´ë˜ìŠ¤ ìƒì„±ë¬¸
+			wr.Write();// ì‹¤ì§ˆì ì¸ í…ìŠ¤íŠ¸ íŒŒì¼ ì½ê¸°
 		}
 	} while (_findnext(handle, &fd) == 0);
 
